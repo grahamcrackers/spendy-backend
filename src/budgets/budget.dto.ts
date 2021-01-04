@@ -1,12 +1,4 @@
-import {
-    IsString,
-    IsNumber,
-    IsOptional,
-    IsBoolean,
-    IsEmail,
-    IsMongoId,
-    IsDateString,
-} from 'class-validator'
+import {IsString, IsNumber, IsOptional, IsBoolean, IsEmail, IsMongoId, IsDateString} from 'class-validator'
 import {Types} from 'mongoose'
 import {Expense} from 'src/expenses/expense.schema'
 

@@ -10,9 +10,7 @@ import {BudgetsService} from './budgets.service'
 @Module({
     imports: [
         MongooseModule.forFeature([{name: Budget.name, schema: BudgetSchema}]),
-        MongooseModule.forFeature([
-            {name: Expense.name, schema: ExpenseSchema},
-        ]),
+        MongooseModule.forFeature([{name: Expense.name, schema: ExpenseSchema}]),
     ],
     controllers: [BudgetsController],
     providers: [BudgetsService, BudgetsResolver, ExpensesService],

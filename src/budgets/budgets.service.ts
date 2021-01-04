@@ -24,17 +24,9 @@ export class BudgetsService {
 
     async findActive(): Promise<Budget[]> {
         const currentDate: Date = new Date()
-        const firstDayOfCurrentMonth: Date = new Date(
-            currentDate.getFullYear(),
-            currentDate.getMonth(),
-            1,
-        )
+        const firstDayOfCurrentMonth: Date = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1)
         firstDayOfCurrentMonth.setUTCHours(0, 0, 0, 0)
-        const lastDayOfCurrentMonth: Date = new Date(
-            currentDate.getFullYear(),
-            currentDate.getMonth() + 1,
-            0,
-        )
+        const lastDayOfCurrentMonth: Date = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0)
         lastDayOfCurrentMonth.setUTCHours(0, 0, 0, 0)
         return this.budgetModel.find({
             userEmail: this.userEmail,
@@ -55,9 +47,7 @@ export class BudgetsService {
     }
 
     async find(id): Promise<Budget> {
-        return await this.budgetModel
-            .findOne({_id: id, userEmail: this.userEmail})
-            .exec()
+        return await this.budgetModel.findOne({_id: id, userEmail: this.userEmail}).exec()
     }
 
     async create(budgetDto: BudgetDto): Promise<Budget> {
@@ -68,11 +58,9 @@ export class BudgetsService {
 
     async update(id, budgetDto: BudgetDto): Promise<Budget> {
         budgetDto.userEmail = this.userEmail
-        const editedBudget = await this.budgetModel.findOneAndUpdate(
-            {_id: id, userEmail: this.userEmail},
-            budgetDto,
-            {new: true},
-        )
+        const editedBudget = await this.budgetModel.findOneAndUpdate({_id: id, userEmail: this.userEmail}, budgetDto, {
+            new: true,
+        })
         return editedBudget
     }
 

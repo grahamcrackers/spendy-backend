@@ -1,11 +1,4 @@
-import {
-    Resolver,
-    Args,
-    Query,
-    Mutation,
-    ResolveField,
-    Parent,
-} from '@nestjs/graphql'
+import {Resolver, Args, Query, Mutation, ResolveField, Parent} from '@nestjs/graphql'
 import {Inject} from '@nestjs/common'
 import {BudgetsService} from './budgets.service'
 import {Budget, BudgetDocument} from './budget.schema'

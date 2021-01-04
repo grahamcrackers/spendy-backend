@@ -1,11 +1,4 @@
-import {
-    Resolver,
-    Args,
-    Query,
-    Mutation,
-    ResolveField,
-    Parent,
-} from '@nestjs/graphql'
+import {Resolver, Args, Query, Mutation, ResolveField, Parent} from '@nestjs/graphql'
 import {Inject} from '@nestjs/common'
 import {ExpensesService} from './expenses.service'
 import {Expense, ExpenseDocument} from './expense.schema'
@@ -15,15 +8,10 @@ import {Types} from 'mongoose'
 
 @Resolver(() => Expense)
 export class ExpensesResolver {
-    constructor(
-        @Inject(ExpensesService) private expensesService: ExpensesService,
-    ) {}
+    constructor(@Inject(ExpensesService) private expensesService: ExpensesService) {}
 
     @ResolveField(() => Budget)
-    async budget(
-        @Parent() expense: ExpenseDocument,
-        @Args('populate') populate: boolean,
-    ) {
+    async budget(@Parent() expense: ExpenseDocument, @Args('populate') populate: boolean) {
         if (populate) {
             await expense.populate('budget').execPopulate()
         }
@@ -37,10 +25,7 @@ export class ExpensesResolver {
     }
 
     @Query(() => [Expense])
-    async expensesByDateRange(
-        @Args('startDate') startDate: Date,
-        @Args('endDate') endDate: Date,
-    ): Promise<Expense[]> {
+    async expensesByDateRange(@Args('startDate') startDate: Date, @Args('endDate') endDate: Date): Promise<Expense[]> {
         return await this.expensesService.findByDateRange(startDate, endDate)
     }
 
